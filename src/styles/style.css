@@ -78,7 +78,6 @@ h1 {
 }
 
 
-
 /* TODO FORM SECTION */
 
 .add-todo-section {
@@ -86,13 +85,11 @@ h1 {
 	padding: .75rem;
 	flex-basis: 25%;
 	background: var(--color-tercary);
-
 }
 
 .add-todo-form {
 	display: flex;
 	flex-direction: column;
-
 }
 
 .title-error,
@@ -139,20 +136,17 @@ h1 {
 
 .date-span {
 	flex-basis: 15%;
-	background: var(--color-button);
-	
+	background: var(--color-button);	
 }
 
 .description-span {
 	flex-basis: 45%;
-	background: var(--color-active);
-	
+	background: var(--color-active);	
 }
 
 .delete-button-span {
 	flex-basis: 15%;
 	background: var(--color-button);
-
 }
 
 
