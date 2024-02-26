@@ -5,10 +5,79 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Simons Todo`s</title>
 
+	<link rel="stylesheet" href="../src/styles/reset.css">
+	<link rel="stylesheet" href="../src/styles/variables.css">
 	<link rel="stylesheet" href="../src/styles/style.css">
 	<script src="../src/js/app.js" defer></script>
 </head>
 <body>
-	<h1>Hello world</h1>
+	<header class="main-header">
+		<h1>Simons Todos or not todos</h1>
+		<div class="header__sign-section">
+			<span><a href="">Sign Up</a></span>
+			<button class="header__sign-in-button">Sign In</button>
+		</div>
+	</header>
+	
+	<main>
+		<section class="signup-section">
+			<form action="" class="signup-form">
+				<label for="signup-form__email">Enter email:</label>
+				<input type="email" name="signup-form__email" class="signup-form__email">
+	
+				<label for="signup-form__password">Enter password:</label>
+				<input type="password" name="signup-form__password" class="signup-form__password">
+	
+				<button class="signup-submit-button">Sign me up!</button>
+			</form>
+		</section>
+
+		<section class="sign-in-section">
+			<form action="" class="sign-in-form">
+				<label for="sign-in-form__email">Enter email:</label>
+				<input type="email" name="sign-in-form__email" class="sign-in-form__email">
+	
+				<label for="sign-in-form__password">Enter password:</label>
+				<input type="password" name="sign-in-form__password" class="sign-in-form__password">
+				<label for="sign-in-form__password" class="sign-in-form__password-error">Wrong password:</label>
+	
+				<button class="sign-in-submit-button">Sign in</button>
+			</form>
+		</section>
+
+		<section class="add-todo-section">
+			<form action="" class="add-todo-form">
+				
+				<label for="todo-title-input">Title: </label>
+				<input type="text" name="todo-title-input" class="todo-title-input" placeholder="Enter todo title">
+				<label for="todo-title-input" class="title-error">Error</label>
+
+				
+				<label for="todo-date-input">Due date: </label>
+				<input type="text" name="todo-date-input" class="todo-date-input">
+				<label for="todo-date-input" class="date-error">Error date</label>
+				
+				<label for="todo-description-input">Description: </label>
+				<textarea name="todo-description-input" class="todo-description-input" cols="30" rows="10"></textarea>
+				<p class="char-count">Characters: 0 </p>
+				<label for="todo-description-input" class="description-error">Error</label>
+
+				<button class="submit-todo-button">Add todo</button>
+			</form>
+		</section>
+
+		<section class="display-todos-section">
+			<header class="display-todos__header">
+				<span class="nr-span">Nr</span>
+				<span class="title-span">Title</span>
+				<span class="date-span">Due Date</span>
+				<span class="description-span">Description</span>
+				<span class="delete-button-span"></span>
+			</header>
+		</section>
+		
+	</main>
+
+
 </body>
 </html>

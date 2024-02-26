@@ -1,9 +1,159 @@
-* {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
+
+body {
+	width: 100%;
+	height: 100vh;
+}
+
+main {
+	height: 100%;	
+	display: flex;
+	position: relative;
+}
+
+button {
+	color: var(--color-primary);
+	border-radius: .30rem;
+	background: var(--color-button);
+}
+
+button:hover {
+	color: black;
+	background: var(--color-hover);
+}
+button:active {
+	color: black;
+	background: var(--color-active);
+}
+
+
+/* HEADER */
+
+.main-header {
+	height: 3.5rem;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0 3rem;
+	background: var(--color-secondary);
+}
+
+.header__sign-section {
+	display: flex;
+	gap: .80rem;
+}
+
+.header__sign-in-button {
+	width: 5rem;
 }
 
 h1 {
-	color: red;	
+	font-size: 28px;
 }
+
+/* SIGNUP FORM */
+.signup-section, .sign-in-section {
+	width: 100%;
+	height: calc(100vh - 3.5rem);
+	position: absolute;	
+	display: none;
+	justify-content: center;
+	background: var(--color-primary);
+}
+
+.signup-form, .sign-in-form {
+	width: 30%;
+	height: 40%;
+	margin-top: 15%;
+	padding: 2rem 4rem;
+	display: flex;	
+	flex-direction: column;
+	border-radius: .30rem;
+	border: 3px solid var(--color-active);
+}
+
+.signup-form button,
+.sign-in-form button,
+.sign-in-form label:nth-of-type(2)  {
+	margin-top: 1.5rem;
+}
+
+
+
+/* TODO FORM SECTION */
+
+.add-todo-section {
+	height: 100%;
+	padding: .75rem;
+	flex-basis: 25%;
+	background: var(--color-tercary);
+
+}
+
+.add-todo-form {
+	display: flex;
+	flex-direction: column;
+
+}
+
+.title-error,
+.date-error,
+.description-error {
+	visibility: hidden;
+}
+
+.todo-title-input, 
+.todo-date-input,
+.todo-description-input {
+	padding: 0 .50rem;
+	resize: none;
+}
+
+
+/* TODO DISPLAY SECTION */
+
+.display-todos-section {
+	flex-basis: 75%;
+	padding: 3rem 5rem;
+	background: var(--color-primary);
+}
+
+.display-todos__header {
+	display: flex;	
+}
+
+.display-todos__header span {
+	padding: .35rem .50rem;
+	font-weight: 600;
+	border: 1px solid white;
+}
+
+.nr-span {
+	flex-basis: 5%;
+	background: var(--color-button);
+}
+
+.title-span {
+	flex-basis: 20%;
+	background: var(--color-active);
+}
+
+.date-span {
+	flex-basis: 15%;
+	background: var(--color-button);
+	
+}
+
+.description-span {
+	flex-basis: 45%;
+	background: var(--color-active);
+	
+}
+
+.delete-button-span {
+	flex-basis: 15%;
+	background: var(--color-button);
+
+}
+
+
+
