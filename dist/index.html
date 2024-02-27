@@ -9,7 +9,9 @@
 	<link rel="stylesheet" href="../src/styles/reset.css">
 	<link rel="stylesheet" href="../src/styles/variables.css">
 	<link rel="stylesheet" href="../src/styles/style.css">
-	<script src="./bundle.js"></script>
+
+	<script src="https://kit.fontawesome.com/04179606a2.js" crossorigin="anonymous"></script>
+	<script src="./bundle.js" defer></script>
 </head>
 <body>
 	<header class="main-header">
@@ -18,13 +20,14 @@
 			<h1>Todo, or not todos</h1>
 		</div>
 		<div class="header__sign-section">
-			<span><a href="">Sign Up</a></span>
+			<span><button class="header__signup-button">Sign Up</button></span>
 			<button class="header__sign-in-button">Sign In</button>
 		</div>
 	</header>
 	
 	<main>
 		<section class="signup-section">
+			<button class="close-form-button"><i class="fa-solid fa-xmark"></i></button>
 			<form action="" class="signup-form">
 				<label for="signup-form__email">Enter email:</label>
 				<input type="email" name="signup-form__email" class="signup-form__email">
@@ -37,6 +40,7 @@
 		</section>
 
 		<section class="sign-in-section">
+			<button class="close-form-button"><i class="fa-solid fa-xmark"></i></button>
 			<form action="" class="sign-in-form">
 				<label for="sign-in-form__email">Enter email:</label>
 				<input type="email" name="sign-in-form__email" class="sign-in-form__email">
@@ -58,7 +62,7 @@
 
 				
 				<label for="todo-date-input">Due date: </label>
-				<input type="text" name="todo-date-input" class="todo-date-input">
+				<input type="date" name="todo-date-input" class="todo-date-input">
 				<label for="todo-date-input" class="date-error">Error date</label>
 				
 				<label for="todo-description-input">Description: </label>

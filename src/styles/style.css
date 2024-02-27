@@ -16,10 +16,8 @@ main {
 }
 
 button {
-	height: 1.75rem;
-	color: var(--color-primary);
-	border-radius: .30rem;
-	background: var(--color-button);
+	height: 1.75rem;	
+	border-radius: .30rem;	
 }
 
 button:hover {
@@ -77,6 +75,8 @@ a:active {
 
 .header__sign-in-button {
 	width: 5rem;
+	color: var(--color-primary);
+	background: var(--color-button);
 }
 
 h1 {
@@ -91,6 +91,15 @@ h1 {
 	display: none;
 	justify-content: center;
 	background: var(--color-primary);
+}
+
+.signup-section>button, .sign-in-section>button {
+	position: absolute;
+	right: 3rem;
+	top: 2rem;
+	width: 3rem;
+	height: 3rem;	
+	background: transparent;
 }
 
 .signup-form, .sign-in-form {
@@ -108,6 +117,20 @@ h1 {
 .sign-in-form button,
 .sign-in-form label:nth-of-type(2)  {
 	margin-top: 1.5rem;
+}
+
+.signup-form button,
+.sign-in-form button {
+	color: var(--color-primary);
+	background: var(--color-button);
+}
+
+.fa-xmark {
+	font-size: 36px;	
+}
+
+.fa-xmark:hover {
+	transform: scale(1.1) rotate(-5deg);
 }
 
 
@@ -128,6 +151,7 @@ h1 {
 .title-error,
 .date-error,
 .description-error {
+	color: red;
 	visibility: hidden;
 }
 
@@ -138,6 +162,15 @@ h1 {
 	resize: none;
 }
 
+.char-count {
+	font-size: 12px;
+	font-weight: inherit;
+}
+
+.submit-todo-button {
+	color: var(--color-primary);
+	background: var(--color-button);
+}
 
 /* TODO DISPLAY SECTION */
 
