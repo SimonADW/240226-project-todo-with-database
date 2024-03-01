@@ -74,16 +74,21 @@ a:active {
 }
 
 .header__sign-in-button {
-	width: 5rem;
 	color: var(--color-primary);
 	background: var(--color-button);
+}
+
+.header__signup-button,
+.header__sign-in-button, 
+.header__signout-button {
+	width: 6rem;
 }
 
 h1 {
 	font-size: 28px;
 }
 
-/* SIGNUP FORM */
+/* SIGNUP FORM / SIGN IN FORM */
 .signup-section, .sign-in-section {
 	width: 100%;
 	height: calc(100vh - 4rem);
@@ -104,7 +109,7 @@ h1 {
 
 .signup-form, .sign-in-form {
 	width: 30%;
-	height: 40%;
+	height: 50%;
 	margin-top: 15%;
 	padding: 2rem 4rem;
 	display: flex;	
@@ -113,15 +118,27 @@ h1 {
 	border: 3px solid var(--color-active);
 }
 
+.signup-form-legend {
+	margin-bottom: 1rem;
+	text-align: center;
+}
+
 .signup-form button,
 .sign-in-form button,
-.sign-in-form label:nth-of-type(2)  {
+.sign-in-form label:nth-of-type(3), 
+.signup-form label:nth-of-type(3) {
 	margin-top: 1.5rem;
+}
+
+.signup-form__email-error,
+.signup-form__password-error {
+	color: red;
+	visibility: hidden;
 }
 
 .signup-form button,
 .sign-in-form button {
-	color: var(--color-primary);
+	color: var(--color-primary);	
 	background: var(--color-button);
 }
 
@@ -131,6 +148,12 @@ h1 {
 
 .fa-xmark:hover {
 	transform: scale(1.1) rotate(-5deg);
+}
+
+.sign-in-form__email-error,
+.sign-in-form__password-error {
+	color: red;
+	visibility: hidden;
 }
 
 /* LOGO LANDING PAGE SECTION */

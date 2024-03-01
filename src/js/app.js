@@ -15,6 +15,7 @@ const signInButton = document.querySelector(".header__sign-in-button");
 const signUpButton = document.querySelector(".header__signup-button");
 const signInSection = document.querySelector(".sign-in-section");
 const signUpSection = document.querySelector(".signup-section");
+const signOutUserButton = document.querySelector(".header__signout-button");
 const closeButtons = document.querySelectorAll(".close-form-button");
 
 	// TODO FORM SECTION
@@ -75,56 +76,94 @@ validateDescription(descriptionInput, descriptionError, charCounter);
 const authService = getAuth();
 
 // SIGN UP USERS
+
+import { validateSignUp } from "./validateSignUp";
+
 const signUpEmail = document.querySelector(".signup-form__email");
 const signUpPassword = document.querySelector(".signup-form__password");
+const signUpEmailError = document.querySelector(".signup-form__email-error");
+const signUpPasswordError = document.querySelector(".signup-form__password-error");
 const signUpSubmitButton = document.querySelector(".signup-submit-button");
 
 const signUpUser = ()=> {
 	const userEmail = signUpEmail.value;
 	const userPassword = signUpPassword.value;
-	createUserWithEmailAndPassword(authService, userEmail, userPassword)
-	.then((cred)=>{
-		console.log(cred);
-		console.log("Account created!");
-	})
-	.catch((error)=> {
-		console.log(error.message);
-	})
+	const { signInErrorStatus } = validateSignUp(userEmail, userPassword, signUpEmailError, signUpPasswordError)
+	if (signInErrorStatus()) {
+		return
+	} else {
+		createUserWithEmailAndPassword(authService, userEmail, userPassword)
+		.then((cred)=>{
+			console.log(cred);
+			console.log("Account created!");
+			signUpSection.style.display = "none";
+			signInButton.style.display = "none";
+			signUpButton.style.display = "none";
+			signOutUserButton.style.display = "block";
+
+		})
+		.catch((error)=> {
+			console.log(error.message);
+			signUpPasswordError.textContent = error.message;
+			signUpPasswordError.style.visibility = "visible";
+		})
+	}
 }
 
 signUpSubmitButton.addEventListener("click", (event)=> {
 	event.preventDefault();
 	signUpUser();
-	signUpSection.style.display = "none";	
+	
 });
 
 // SIGN IN USERS
 
+import { validateSignIn } from "./validateSignIn";
+
+
 const signInEmail = document.querySelector(".sign-in-form__email");
 const signInPassword = document.querySelector(".sign-in-form__password");
+const signInEmailError = document.querySelector(".sign-in-form__email-error");
+const signInPasswordError = document.querySelector(".sign-in-form__password-error");
 const signInSubmitButton = document.querySelector(".sign-in-submit-button");
 
 signInSubmitButton.addEventListener("click", (event)=> {
 	event.preventDefault();
 	const userEmail = signInEmail.value;
 	const userPassword = signInPassword.value;
-	signInWithEmailAndPassword(authService, userEmail, userPassword)
-	.then(()=> {
-		console.log("Signed in ✔︎");				
-		signInSection.style.display = "none";	
+	const { signInErrorStatus } = validateSignIn(userEmail, userPassword, signInEmailError, signInPasswordError);
+	if (signInErrorStatus()) {
+		return
+	} else {
+		signInWithEmailAndPassword(authService, userEmail, userPassword)
+		.then(()=> {
+			console.log("Signed in ✔︎");				
+			signInSection.style.display = "none";	
+			signInButton.style.display = "none";
+			signUpButton.style.display = "none";
+			signOutUserButton.style.display = "block";
+			
+		})
+		.catch((error)=> {
+			console.log(error.message);
+			signInPasswordError.textContent = "Wrong password";
+			signInPasswordError.style.visibility = "visible";			
+			});
 
-	})
-	.catch((error)=> console.log(error.message));
-})
 
+	}
+});
+	
 // SIGN OUT USERS
-
-const signOutUserButton = document.querySelector(".header__signout-button");
 
 const signOutUser = ()=> {
 	signOut(authService)
 	.then(()=> {
 		console.log("Signed out 👋");
+		signOutUserButton.style.display = "none";
+		signInButton.style.display = "block";
+		signUpButton.style.display = "block";
+		
 	})
 	.catch((error)=> console.log(error.message));
 }
