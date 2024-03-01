@@ -224,11 +224,13 @@ h1 {
 	background: var(--color-primary);
 }
 
-.display-todos__header {
+.display-todos__header,
+.todo-li {
 	display: flex;	
 }
 
-.display-todos__header span {
+.display-todos__header span,
+.todo-li span {
 	padding: .35rem .50rem;
 	font-weight: 600;
 	border: 3px solid white;	
@@ -257,6 +259,7 @@ h1 {
 .delete-button-span {
 	flex-basis: 15%;
 	background: var(--color-secondary);
+	text-align: center;
 }
 
 
