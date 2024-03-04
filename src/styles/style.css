@@ -113,6 +113,7 @@ h1 {
 
 .signup-form, .sign-in-form {
 	width: 30%;
+	max-width: 400px;
 	height: 50%;
 	margin-top: 15%;
 	padding: 2rem 4rem;
@@ -162,12 +163,13 @@ h1 {
 
 /* LOGO LANDING PAGE SECTION */
 .landing-section__logo-section{
-	width: 100%;
+	width: 100vw;
 	height: 100%;
 	display: flex;
-	align-items: center;
+	justify-content: center;
+	padding-top: 25vh;
 	gap: 3rem;
-	margin-left: 10rem;
+	/* margin-left: 10rem; */
 }
 
 .landing-section__logo-section h1 {
@@ -178,6 +180,7 @@ h1 {
 }
 
 .landing-section-logo {
+	height: fit-content;
 	width: 15rem;
 	transform: rotate(-10deg);
 }
@@ -227,6 +230,11 @@ h1 {
 	flex-basis: 75%;
 	padding: 3rem 5rem;
 	background: var(--color-primary);
+}
+
+.display-todos__header {
+	text-decoration: underline;
+		
 }
 
 .display-todos__header,
