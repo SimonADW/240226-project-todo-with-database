@@ -1,8 +1,11 @@
+import { deleteDoc, doc } from "firebase/firestore";
+import { database } from "./app";
 
-const renderTodoList = (todos)=> {
+const renderTodoList = (todos)=> {	
 	const listUl = document.querySelector(".display-todos-ul");
 	listUl.textContent = "";
 	let listIndex = -1;
+
 	todos.forEach((todo) => {
 		const newTodo = {id: todo.id, ...todo.data()};
 		listIndex++;
@@ -34,6 +37,14 @@ const renderTodoList = (todos)=> {
 		listUl.append(todoLi);
 		todoLi.append(nrSpan, titleSpan, dateSpan, descSpan, deleteSpan);
 		deleteSpan.append(deleteButton);		
+
+		deleteButton.addEventListener("click", (event)=> {
+			event.preventDefault();
+			console.log(event.currentTarget.parentElement.parentElement.dataset.id);
+			const idToRemove = event.currentTarget.parentElement.parentElement.dataset.id;
+			const docToRemove = doc(database, "todo-or-not-todos" ,idToRemove);
+			deleteDoc(docToRemove);
+		});
 	});
 }
 

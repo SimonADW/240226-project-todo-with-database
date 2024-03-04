@@ -4,7 +4,7 @@ import {initializeApp} from "firebase/app";
 
 import {getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged} from "firebase/auth";
 
-import { getFirestore, collection } from "firebase/firestore"
+import { getFirestore, collection, query, orderBy } from "firebase/firestore"
 
 initializeApp(firebaseConfig);
 const database = getFirestore();
@@ -60,6 +60,7 @@ closeButtons.forEach((button)=>{
 // AUTHENTICATION ---------------------------------------------------
 
 const authService = getAuth();
+
 
 // SIGN UP USERS
 
@@ -121,6 +122,7 @@ signInSubmitButton.addEventListener("click", (event)=> {
 	if (signInErrorStatus()) {
 		return
 	} else {
+
 		signInWithEmailAndPassword(authService, userEmail, userPassword)
 		.then(()=> {
 			console.log("Signed in ✔︎");				
@@ -166,15 +168,23 @@ function checkUserStatus() {
 			addTodoSection.style.display = "flex";
 			displayTodoSection.style.display = "block";
 			landingSection.style.display = "none";
+			
+			signInButton.style.display = "none";
+			signUpButton.style.display = "none";
+			signOutUserButton.style.display = "block";
 		} else {	
 			addTodoSection.style.display = "none";
 			displayTodoSection.style.display = "none";
 			landingSection.style.display = "block";
+
+			signInButton.style.display = "block";
+			signUpButton.style.display = "block";
+			signOutUserButton.style.display = "none";
 		};
 	});
 };
 
-checkUserStatus();
+checkUserStatus(); 
 
 
 // ---------------------- TODOS ---------------------------------//
@@ -191,6 +201,7 @@ submitTodoButton.addEventListener("click", (event)=>{
 		return
 	} else {		
 		handleNewTodo(titleInput.value, dateInput.value, descriptionInput.value, todoCollection);
+		checkUserStatus();
 		todoForm.reset();
 	}
 });
@@ -203,9 +214,16 @@ validateDescription(descriptionInput, descriptionError, charCounter);
 import { renderTodoList } from "./renderTodoList";
 import { onSnapshot } from "firebase/firestore";
 
-onSnapshot(todoCollection, (snapshot)=> {
-	renderTodoList(snapshot)
-})
+function fetchTodos() {
+	const sortedQuery = query(todoCollection, orderBy("dueDate", "asc"));
+	onSnapshot(sortedQuery, (snapshot)=> {
+		renderTodoList(snapshot)
+	});
+};
 
 
+window.addEventListener("DOMContentLoaded", fetchTodos);
+	
+	
 
+export { database, todoCollection }

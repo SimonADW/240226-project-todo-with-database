@@ -6,13 +6,12 @@ const handleNewTodo = (titleInput, dueDateInput, descriptionInput, collection) =
 		title: titleInput,
 		dueDate: dueDateInput,
 		description: descriptionInput,		
-		timestamp: serverTimestamp()		
+		timestamp: serverTimestamp()
 	}
 
 	addDoc(collection, newToDo)
 	.then(()=> {
 		console.log("Todo added ✔︎");
-		// renderTodos()	
 	})
 	.catch((error)=> console.log(error.message));
 }
