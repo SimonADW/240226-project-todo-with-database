@@ -4,9 +4,11 @@ import {initializeApp} from "firebase/app";
 
 import {getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged} from "firebase/auth";
 
+import { getFirestore, collection } from "firebase/firestore"
 
 initializeApp(firebaseConfig);
-
+const database = getFirestore();
+const todoCollection = collection(database, "todo-or-not-todos")
 
 
 //	DOM CONTENT TARGETS
@@ -19,6 +21,7 @@ const signOutUserButton = document.querySelector(".header__signout-button");
 const closeButtons = document.querySelectorAll(".close-form-button");
 
 	// TODO FORM SECTION
+const todoForm = document.querySelector(".add-todo-form");
 const titleInput = document.querySelector(".todo-title-input");
 const dateInput = document.querySelector(".todo-date-input");
 const descriptionInput = document.querySelector(".todo-description-input");
@@ -53,23 +56,6 @@ closeButtons.forEach((button)=>{
 		checkUserStatus();
 	});
 });
-
-// VALIDATE FORM
-
-import { validateForm, validateDescription } from "./validateForm";
-
-submitTodoButton.addEventListener("click", (event)=>{
-	event.preventDefault();
-	const {formErrorStatus} = validateForm(titleInput.value, dateInput.value, titleError, dateError);
-	if (formErrorStatus()){
-		return
-	} else {
-		console.log("Submitted");
-	}
-});
-
-validateDescription(descriptionInput, descriptionError, charCounter);
-
 
 // AUTHENTICATION ---------------------------------------------------
 
@@ -149,8 +135,6 @@ signInSubmitButton.addEventListener("click", (event)=> {
 			signInPasswordError.textContent = "Wrong password";
 			signInPasswordError.style.visibility = "visible";			
 			});
-
-
 	}
 });
 	
@@ -175,8 +159,7 @@ signOutUserButton.addEventListener("click", ()=> {
 // CHECK USER AUTH-STATUS
 function checkUserStatus() {	
 	const addTodoSection = document.querySelector(".add-todo-section");
-	const displayTodoSection = document.querySelector(".display-todos-section");
-	
+	const displayTodoSection = document.querySelector(".display-todos-section");	
 
 	onAuthStateChanged(authService, (user)=> {
 		if(user) {
@@ -194,6 +177,35 @@ function checkUserStatus() {
 checkUserStatus();
 
 
+// ---------------------- TODOS ---------------------------------//
+
+// VALIDATE FORM & HANDLE NEW TODO
+
+import { validateForm, validateDescription } from "./validateForm";
+import { handleNewTodo } from "./handleTodos.js"
+
+submitTodoButton.addEventListener("click", (event)=>{
+	event.preventDefault();
+	const {formErrorStatus} = validateForm(titleInput.value, dateInput.value, titleError, dateError);
+	if (formErrorStatus()){
+		return
+	} else {		
+		handleNewTodo(titleInput.value, dateInput.value, descriptionInput.value, todoCollection);
+		todoForm.reset();
+	}
+});
+
+validateDescription(descriptionInput, descriptionError, charCounter);
+
+
+// RENDER TODOS IN LIST
+
+import { renderTodoList } from "./renderTodoList";
+import { onSnapshot } from "firebase/firestore";
+
+onSnapshot(todoCollection, (snapshot)=> {
+	renderTodoList(snapshot)
+})
 
 
 
